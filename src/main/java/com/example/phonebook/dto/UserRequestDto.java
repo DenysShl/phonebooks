@@ -4,10 +4,8 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class UserRequestDto {
     @NotBlank(message = "Please enter first name")
     @Size(min = 4, message = "Name should be atleast 4 characters")
