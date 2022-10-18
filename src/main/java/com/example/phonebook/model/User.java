@@ -25,7 +25,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     @OneToMany
-    @Cascade({CascadeType.PERSIST, CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     private List<Phone> phones;
     @Column(name = "created_date")
     private LocalDateTime dataCreatedUser;
