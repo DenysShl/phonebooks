@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -26,6 +28,9 @@ public class User {
     private String lastName;
     @OneToMany
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @JoinTable(name = "users_phones",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "phone_id"))
     private List<Phone> phones;
     @Column(name = "created_date")
     private LocalDateTime dataCreatedUser;
