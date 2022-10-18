@@ -8,5 +8,5 @@ public class UserResponseDto {
     private Long id;
     private String firstName;
     private String lastName;
-    private List<Long> phoneIds;
+    private List<String> phones;
 }

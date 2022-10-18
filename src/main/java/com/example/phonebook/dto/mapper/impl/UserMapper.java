@@ -26,11 +26,11 @@ public class UserMapper implements MapperResponseDto<UserResponseDto, User>,
         userResponseDto.setId(user.getId());
         userResponseDto.setFirstName(user.getFirstName());
         userResponseDto.setLastName(user.getLastName());
-        List<Long> phoneIds = user.getPhones()
+        List<String> list = user.getPhones()
                 .stream()
-                .map(Phone::getId)
+                .map(Phone::getNumberPhone)
                 .collect(Collectors.toList());
-        userResponseDto.setPhoneIds(phoneIds);
+        userResponseDto.setPhones(list);
         return userResponseDto;
     }
 

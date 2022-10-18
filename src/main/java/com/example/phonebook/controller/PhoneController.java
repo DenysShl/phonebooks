@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/phones")
+@RequestMapping("/api/v1/phones")
 public class PhoneController {
     private PhoneService phoneService;
     private PhoneMapper phoneMapper;

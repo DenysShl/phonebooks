@@ -4,7 +4,6 @@ import com.example.phonebook.dto.UserRequestDto;
 import com.example.phonebook.dto.UserResponseDto;
 import com.example.phonebook.dto.mapper.impl.UserMapper;
 import com.example.phonebook.model.User;
-import com.example.phonebook.service.PhoneService;
 import com.example.phonebook.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -21,17 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
-    private final PhoneService phoneService;
     private final UserMapper userMapper;
 
     public UserController(UserService userService,
-                          PhoneService phoneService,
                           UserMapper userMapper) {
         this.userService = userService;
-        this.phoneService = phoneService;
         this.userMapper = userMapper;
     }
 
@@ -69,5 +65,13 @@ public class UserController {
         return userService.getAll().stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @ApiOperation(value = "Search users by phone number")
+    @GetMapping("/search")
+    public List<UserResponseDto> getAllByPhone(@RequestParam String phoneNumber) {
+        return userService.getAllUsersByPhone(phoneNumber).stream()
+                .map(userMapper::toDto)
+                .toList();
     }
 }
